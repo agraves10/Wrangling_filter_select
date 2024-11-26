@@ -49,6 +49,9 @@ But after looking at all of the movies recorded here, the more precise questions
 
 - What is the median budget *of animated films compared to documentaries?*
 
+DPLYR
+Asking for tidyverse we will get this, 20 packages 
+
 We often find that the whole data frame is not necessary or even helpful to answer our questions. We need to simplify the data in certain ways. Since there are only two dimensions to a data frame like this, we will discuss two ways of reduction:
 
 - `filter()` to reduce the number of observations/rows
@@ -60,15 +63,16 @@ We often find that the whole data frame is not necessary or even helpful to answ
 
 This one is probably the most useful verb for data wrangling. You can see from the initial data check, there are 58788 movies. Some of these are even from before 1900! Let's consider only looking into movies that were made since the "New Hollywood" era, 1965 (according to a wikipedia search). How many movies does that include?
 
+
 ```{r}
 # Pay attention to the usage of the pipe
 movies %>%               # start with the full dataset, and then
-  filter(year >= 1965)   # give me only movies where the year is greater than or equal to 1965
+  filter(year >= 1965, length >= 60, votes >= 500, rating >= 9, mpaa >= "PG")   # give me only movies where the year is greater than or equal to 1965
 
 # Some simple practice and review for using filters
 
 # How many movies since 1965 have a run-time greater than 60 minutes?
-
+  
 # Show all movies with more than 500 votes and an average rating of at least 9
 
 # How many PG-13 movies are in this dataset? Remember to use quotations ("") when filtering characters/strings
@@ -108,10 +112,11 @@ movies_modern
 One more useful way to filter a character variable is to base it on part of the value, or a string subset. You can use `str_detect()` for this. To use this function, just add the variable name and words or partial word you would like to detect.
 
 - `str_detect(variable_name, "Word to filter")`
-
 ```{r}
 movies %>%
   filter(str_detect(title, "Godzilla"))
+movies %>%
+  filter(str_detect(title, "Batman"))
 
 # Which Batman movies are in the dataset?
 ```
@@ -127,6 +132,7 @@ Alright, there are countless ways we can create subsets of our data to better su
 movies %>%
   select(title, year, rating)    # multiple argument values are separated by a comma
 ```
+
 
 
 Notice that there are a bunch of ratings percentiles (`r1`-`r10`) that I don't really plan on using. We can still use the '!' as a logical negative here.
@@ -191,7 +197,13 @@ movies_2000 %>%
   arrange(rating, desc(budget))  # these are the lowest rated movies arranged by largest budget
 
 # Using the original 'movies' data, what is the longest movie? What is the oldest movie?
+
+movies %>%
+  arrange(desc(length))
+movies %>%
+  arrange(year)
 ```
+Oldest movie is "Blacksmith Scene" in 1893 and the longest movie is "Cure for Insomnia, The"
 
 
 
@@ -200,10 +212,12 @@ movies_2000 %>%
 See if you can answer these questions:
 
 1. How many movies were released in 1995?
-
 ```{r}
-
+movies_Ques1 <- movies %>%
+  filter(year == 1995)
+movies_Ques1
 ```
+1248 movies released in 1995
 
 2. Which Comedies with an MPAA rating, over 120 minutes have a rating above 8?
 
