@@ -1,8 +1,8 @@
 ---
 title: "Data Wrangling - Part I"
+subtitle: "StatPREP R Workshops"
 author: "Ashia graves"
-subtitle: StatPREP R Workshops
-output:html_document
+output: html_document
 ---
 
 ## Setting things up
@@ -251,11 +251,6 @@ The movie, wild west has the highest budget that is a Comedy or a Animation, wit
 
 5. Is your favorite movie in the dataset? What other questions could you ask or answer using `filter()`, `select()`, and `arrange()`?
 
-Yes, Polar Express and is my favorite movie from the data set
-
-
-We could ask questions using the "or" function and arrange by rating.   
-  
 
 
 
