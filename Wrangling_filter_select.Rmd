@@ -1,8 +1,8 @@
 ---
 title: "Data Wrangling - Part I"
-subtitle: "StatPREP R Workshops"
 author: "Ashia graves"
-output: html_document
+subtitle: StatPREP R Workshops
+output:html_document
 ---
 
 ## Setting things up
@@ -238,22 +238,24 @@ movies_Ques3
 This data includes three movies: Harry Potter and the Chamber of Secrets, Harry Potter and the Prisoner of Azkaban, and Harry Potter and the Sorcerer's Stone. The highest-rated Harry Potter movie is Harry Potter and the Prisoner of Azkaban, while the most-voted movie is Harry Potter and the Sorcerer's Stone.
 
 4. What is the highest budget for a movie that is an Animation or Comedy with at least 100 votes?
+
+
 ```{r}
 movies_Ques4 <- movies %>%
   filter(votes >= 100, Animation == 1 | Comedy == 1) %>%
     arrange(desc(budget))
 movies_Ques4
       
-```Star 
-The movie, "Wild Wild West" has the highest budget that is a Comedy or a Animation, with at least 100 votes.
+```
+The movie, wild west has the highest budget that is a Comedy or a Animation, with at least 100 votes.
 
 5. Is your favorite movie in the dataset? What other questions could you ask or answer using `filter()`, `select()`, and `arrange()`?
 
 Yes, Polar Express and is my favorite movie from the data set
 
 
-We could ask questions using the "or" function and arrange by rating. 
-
+We could ask questions using the "or" function and arrange by rating.   
+  
 
 
 
